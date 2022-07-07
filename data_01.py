@@ -229,3 +229,13 @@ plt.title("Predictor")
 plt.xlabel("Measured")
 plt.ylabel("Predicted")
 plt.show()
+
+# sns.set(font='')
+# cols = [
+#     "価格",
+#     "父牛",
+#     "母の父",
+#     "母の祖父",
+#     "母の祖祖父",
+# ]
+# a = sns.pairplot(df[cols], height=2.5)
