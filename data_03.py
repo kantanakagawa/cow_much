@@ -1,4 +1,5 @@
 import glob
+from numpy import append
 
 # from statistics import LinearRegression
 import pandas as pd
@@ -20,7 +21,7 @@ df = pd.read_excel("all_data.xlsx")
 
 # sns.distplot(df["価格"])
 # plt.show()
-
+# print(df)
 
 import warnings
 
@@ -43,7 +44,7 @@ t = label_encoder.transform(df[["性別"]])
 df["性別"] = t
 
 # ラベルエンコーディングされたことを確認
-# print(df[["性別"]])
+print(df[["性別"]])
 #############################################################################################################
 
 import warnings
@@ -67,7 +68,7 @@ t = label_encoder.transform(df[["父牛"]])
 df["父牛"] = t
 
 # ラベルエンコーディングされたことを確認
-# print(df[["父牛"]])
+print(df[["父牛"]])
 #############################################################################################################
 
 import warnings
@@ -93,7 +94,7 @@ t = label_encoder.transform(df[["母の父"]])
 df["母の父"] = t
 
 # ラベルエンコーディングされたことを確認
-# print(df[["母の父"]])
+print(df[["母の父"]])
 #############################################################################################################
 
 import warnings
@@ -119,7 +120,7 @@ t = label_encoder.transform(df[["母の祖父"]])
 df["母の祖父"] = t
 
 # ラベルエンコーディングされたことを確認
-# print(df[["母の祖父"]])
+print(df[["母の祖父"]])
 #############################################################################################################
 
 import warnings
@@ -145,33 +146,61 @@ t = label_encoder.transform(df[["母の祖祖父"]])
 df["母の祖祖父"] = t
 
 # ラベルエンコーディングされたことを確認
-# print(df[["母の祖祖父"]])
+print(df[["母の祖祖父"]])
 #############################################################################################################
 
 # print(df.info())
 
 
 X = df[["性別", "父牛", "母の父", "母の祖父", "母の祖祖父", "日令", "体重"]].values
-
-# print(X)
 y = df["価格"].values
 
 train_X, test_X, train_y, test_y = train_test_split(
-    X, y, test_size=0.5, random_state=42
+    X, y, test_size=0.3, random_state=42
 )
-
 best_model = ""
 pred_model = []
 
-# 線形回帰
-model = LinearRegression()  # 線形回帰モデル
-model.fit(train_X, train_y)  # 学習
-pred_y = model.predict(test_X)  # 予測
-mse = mean_squared_error(test_y, pred_y)  # 評価
-print("線形RMSE : %.2f" % (mse**0.5))
-min_mse = mse
-best_model = "線形"
-pred_model = pred_model.append(model)
+# test_o = df1["価格"]
+# test_Z = df1
+# print(df1["価格"])
+
+
+# # 線形回帰
+# model = LinearRegression()  # 線形回帰モデル
+# model.fit(train_X, train_y)  # 学習
+# pred_y = model.predict(test_X)  # 予測
+# mse = mean_squared_error(test_y, pred_y)  # 評価
+# print("線形RMSE : %.2f" % (mse**0.5))
+# print(test_y.shape)
+# print(pred_y.shape)
+# min_mse = mse
+# best_model = "線形"
+# pred_model = pred_model.append(model)
+
+
+# sex = int(input())
+# father = int(input())
+# gland = int(input())
+# gege = int(input())
+# got = int(input())
+# age = int(input())
+# wight = int(input())
+
+# df1 = pd.DataFrame(
+#     data={
+#         "性別": [sex],
+#         "父牛": [father],
+#         "母の父": [gland],
+#         "母の祖父": [gege],
+#         "母の祖祖父": [got],
+#         "日令": [age],
+#         "体重": [wight],
+#     }
+# )
+
+# print(model.predict(df1))
+
 #############################################################################################################
 
 # リッジ回帰
@@ -180,11 +209,33 @@ model.fit(train_X, train_y)  # 学習
 pred_y = model.predict(test_X)  # 予測
 mse = mean_squared_error(test_y, pred_y)  # 評価
 print("リッジRMSE : %.2f" % (mse**0.5))
-if min_mse > mse:
-    min_mse = mse
-    best_model = "リッジ"
-    pred_model = model
-#############################################################################################################
+# if min_mse > mse:
+#     min_mse = mse
+#     best_model = "リッジ"
+#     pred_model = model
+
+# sex = int(input())
+# father = int(input())
+# gland = int(input())
+# gege = int(input())
+# got = int(input())
+# age = int(input())
+# wight = int(input())
+
+# df1 = pd.DataFrame(
+#     data={
+#         "性別": [sex],
+#         "父牛": [father],
+#         "母の父": [gland],
+#         "母の祖父": [gege],
+#         "母の祖祖父": [got],
+#         "日令": [age],
+#         "体重": [wight],
+#     }
+# )
+
+# print(model.predict(df1))
+# #############################################################################################################
 
 # ラッソ回帰
 model = Lasso()  # ラッソ回帰モデル
@@ -193,24 +244,70 @@ pred_y = model.predict(test_X)  # 予測
 mse = mean_squared_error(test_y, pred_y)  # 評価
 print("ラッソRMSE : %.2f" % (mse**0.5))
 
-if min_mse > mse:
-    min_mse = mse
-    best_model = "ラッソ"
-    pred_model = model
-#############################################################################################################
 
-#  ElasticNet回帰
-model = ElasticNet(l1_ratio=0.5)  # エラスティックネット回帰モデル
-model.fit(train_X, train_y)  # 学習
-pred_y = model.predict(test_X)  # 予測
-mse = mean_squared_error(test_y, pred_y)  # 評価
-print("エラスティックネットRMSE : %.2f" % (mse**0.5))
+# sex = int(input())
+# father = int(input())
+# gland = int(input())
+# gege = int(input())
+# got = int(input())
+# age = int(input())
+# wight = int(input())
 
-if min_mse > mse:
-    min_mse = mse
-    best_model = "エラスティックネット"
-    pred_model = model
-#############################################################################################################
+# df1 = pd.DataFrame(
+#     data={
+#         "性別": [sex],
+#         "父牛": [father],
+#         "母の父": [gland],
+#         "母の祖父": [gege],
+#         "母の祖祖父": [got],
+#         "日令": [age],
+#         "体重": [wight],
+#     }
+# )
+
+# print(model.predict(df1))
+
+# if min_mse > mse:
+#     min_mse = mse
+#     best_model = "ラッソ"
+# #     pred_model = model
+# #     #############################################################################################################
+
+# #  ElasticNet回帰
+# model = ElasticNet(l1_ratio=0.5)  # エラスティックネット回帰モデル
+# model.fit(train_X, train_y)  # 学習
+# pred_y = model.predict(test_X)  # 予測
+# mse = mean_squared_error(test_y, pred_y)  # 評価
+# print("エラスティックネットRMSE : %.2f" % (mse**0.5))
+
+
+# sex = int(input())
+# father = int(input())
+# gland = int(input())
+# gege = int(input())
+# got = int(input())
+# age = int(input())
+# wight = int(input())
+
+# df1 = pd.DataFrame(
+#     data={
+#         "性別": [sex],
+#         "父牛": [father],
+#         "母の父": [gland],
+#         "母の祖父": [gege],
+#         "母の祖祖父": [got],
+#         "日令": [age],
+#         "体重": [wight],
+#     }
+# )
+
+# print(model.predict(df1))
+
+# if min_mse > mse:
+#     min_mse = mse
+#     best_model = "エラスティックネット"
+#     pred_model = model
+#     #############################################################################################################
 
 #  RandomForest回帰
 model = RandomForestRegressor(100)  # ランダムフォレスト回帰モデル
@@ -219,31 +316,55 @@ pred_y = model.predict(test_X)  # 予測
 mse = mean_squared_error(test_y, pred_y)  # 評価
 print("ランダムフォレストRMSE : %.2f" % (mse**0.5))
 
-if min_mse > mse:
-    min_mse = mse
-    best_model = "ランダムフォレスト回帰"
-    pred_model = model
-#############################################################################################################
 
-plt.figure()
-plt.scatter(train_y, model.predict(train_X), label="Train", c="blue")
-plt.scatter(test_y, pred_y, c="lightgreen", label="Test", alpha=0.8)
-plt.title("Predictor")
-plt.xlabel("Measured")
-plt.ylabel("Predicted")
-plt.show()
+sex = int(input())
+father = int(input())
+gland = int(input())
+gege = int(input())
+got = int(input())
+age = int(input())
+wight = int(input())
 
-# sns.set(font='')
-# cols = [
-#     "価格",
-#     "父牛",
-#     "母の父",
-#     "母の祖父",
-#     "母の祖祖父",
-# ]
-# a = sns.pairplot(df[cols], height=2.5)
+df1 = pd.DataFrame(
+    data={
+        "性別": [sex],
+        "父牛": [father],
+        "母の父": [gland],
+        "母の祖父": [gege],
+        "母の祖祖父": [got],
+        "日令": [age],
+        "体重": [wight],
+    }
+)
+
+print(model.predict(df1))
+
+# if min_mse > mse:
+#     min_mse = mse
+#     best_model = "ランダムフォレスト回帰"
+#     pred_model = model
+#     #############################################################################################################
+
+# # print(df)
+
+# plt.figure()
+# plt.scatter(train_y, model.predict(train_X), label="Train", c="blue")
+# plt.scatter(test_y, pred_y, c="lightgreen", label="Test", alpha=0.8)
+
+# # plt.scatter(test_o, pred_y_2, c="green", label="ex", alpha=0.8)
+
+# plt.title("Predictor")
+# plt.xlabel("Measured")
+# plt.ylabel("Predicted")
+# plt.show()
 
 
-# d = df[["父牛", "母の父", "母の祖父", "母の祖祖父"]]
-# fig, ax1 = plt.subplots()
-# d.plot.bar(figsize=(15, 3), color="blue", ax=ax1)
+# # sns.set(font='')
+# # cols = [
+# #     "価格",
+# #     "父牛",
+# #     "母の父",
+# #     "母の祖父",
+# #     "母の祖祖父",
+# # ]
+# # a = sns.pairplot(df[cols], height=2.5)
