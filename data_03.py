@@ -16,7 +16,6 @@ from sklearn.linear_model import Lasso
 from sklearn.linear_model import ElasticNet
 from sklearn.ensemble import RandomForestRegressor
 
-
 df = pd.read_excel("all_data.xlsx")
 
 # sns.distplot(df["価格"])
@@ -149,10 +148,12 @@ df["母の祖祖父"] = t
 print(df[["母の祖祖父"]])
 #############################################################################################################
 
-# print(df.info())
+# print(df)
+
+# X = df[["性別", "父牛", "母の父", "母の祖父", "母の祖祖父", "日令", "体重"]].values
 
 
-X = df[["性別", "父牛", "母の父", "母の祖父", "母の祖祖父", "日令", "体重"]].values
+X = df[["性別", "父牛", "母の父", "母の祖父", "母の祖祖父"]].values
 y = df["価格"].values
 
 train_X, test_X, train_y, test_y = train_test_split(
@@ -317,27 +318,27 @@ mse = mean_squared_error(test_y, pred_y)  # 評価
 print("ランダムフォレストRMSE : %.2f" % (mse**0.5))
 
 
-sex = int(input())
-father = int(input())
-gland = int(input())
-gege = int(input())
-got = int(input())
-age = int(input())
-wight = int(input())
+# sex = int(input())
+# father = int(input())
+# gland = int(input())
+# gege = int(input())
+# got = int(input())
+# age = int(input())
+# wight = int(input())
 
-df1 = pd.DataFrame(
-    data={
-        "性別": [sex],
-        "父牛": [father],
-        "母の父": [gland],
-        "母の祖父": [gege],
-        "母の祖祖父": [got],
-        "日令": [age],
-        "体重": [wight],
-    }
-)
+# df1 = pd.DataFrame(
+#     data={
+#         "性別": [sex],
+#         "父牛": [father],
+#         "母の父": [gland],
+#         "母の祖父": [gege],
+#         "母の祖祖父": [got],
+#         "日令": [age],
+#         "体重": [wight],
+#     }
+# )
 
-print(model.predict(df1))
+# print(model.predict(df1))
 
 # if min_mse > mse:
 #     min_mse = mse
@@ -345,8 +346,35 @@ print(model.predict(df1))
 #     pred_model = model
 #     #############################################################################################################
 
-# # print(df)
+# model = MLPRegressor()  # 回帰モデル
+# model.fit(train_X, train_y)  # 学習
+# pred_y = model.predict(test_X)  # 予測
+# mse = mean_squared_error(test_y, pred_y)  # 評価
+# print("ニューラルネットワーク : %.2f" % (mse**0.5))
 
+
+# sex = int(input())
+# father = int(input())
+# gland = int(input())
+# gege = int(input())
+# got = int(input())
+# age = int(input())
+# wight = int(input())
+
+# df1 = pd.DataFrame(
+#     data={
+#         "性別": [sex],
+#         "父牛": [father],
+#         "母の父": [gland],
+#         "母の祖父": [gege],
+#         "母の祖祖父": [got],
+#         "日令": [age],
+#         "体重": [wight],
+#     }
+# )
+
+# print(model.predict(df1))
+#     #############################################################################################################
 # plt.figure()
 # plt.scatter(train_y, model.predict(train_X), label="Train", c="blue")
 # plt.scatter(test_y, pred_y, c="lightgreen", label="Test", alpha=0.8)
@@ -368,3 +396,6 @@ print(model.predict(df1))
 # #     "母の祖祖父",
 # # ]
 # # a = sns.pairplot(df[cols], height=2.5)
+
+
+# 0   82   66   129    285  287  345   603000.0
