@@ -57,10 +57,10 @@ enc = LabelEncoder()  # encはencoderの省略名称である変数です。
 # fit()により性別カラムに対してラベルエンコーディングを行います。
 label_encoder = enc.fit(df[["性別"]])  # label_encoder = enc.fit(titanic_x["Sex"])  でも可能です
 # カラムの要素を取得
-print("Categorical classes:", label_encoder.classes_)
+# print("Categorical classes:", label_encoder.classes_)
 # transform()で数値へ変換
 integer_classes = label_encoder.transform(label_encoder.classes_)
-print("Integer classes:", integer_classes)
+# print("Integer classes:", integer_classes)
 
 t = label_encoder.transform(df[["性別"]])
 df["性別"] = t
@@ -78,10 +78,10 @@ enc = LabelEncoder()  # encはencoderの省略名称である変数です。
 # fit()により性別カラムに対してラベルエンコーディングを行います。
 label_encoder = enc.fit(df[["父牛"]])  # label_encoder = enc.fit(titanic_x["Sex"])  でも可能です
 # カラムの要素を取得
-print("Categorical classes:", label_encoder.classes_)
+# print("Categorical classes:", label_encoder.classes_)
 # transform()で数値へ変換
 integer_classes = label_encoder.transform(label_encoder.classes_)
-print("Integer classes:", integer_classes)
+# print("Integer classes:", integer_classes)
 
 t = label_encoder.transform(df[["父牛"]])
 df["父牛"] = t
@@ -101,10 +101,10 @@ label_encoder = enc.fit(
     df[["母の父"]]
 )  # label_encoder = enc.fit(titanic_x["Sex"])  でも可能です
 # カラムの要素を取得
-print("Categorical classes:", label_encoder.classes_)
+# print("Categorical classes:", label_encoder.classes_)
 # transform()で数値へ変換
 integer_classes = label_encoder.transform(label_encoder.classes_)
-print("Integer classes:", integer_classes)
+# print("Integer classes:", integer_classes)
 
 t = label_encoder.transform(df[["母の父"]])
 df["母の父"] = t
@@ -124,10 +124,10 @@ label_encoder = enc.fit(
     df[["母の祖父"]]
 )  # label_encoder = enc.fit(titanic_x["Sex"])  でも可能です
 # カラムの要素を取得
-print("Categorical classes:", label_encoder.classes_)
+# print("Categorical classes:", label_encoder.classes_)
 # transform()で数値へ変換
 integer_classes = label_encoder.transform(label_encoder.classes_)
-print("Integer classes:", integer_classes)
+# print("Integer classes:", integer_classes)
 
 t = label_encoder.transform(df[["母の祖父"]])
 df["母の祖父"] = t
@@ -147,10 +147,10 @@ label_encoder = enc.fit(
     df[["母の祖祖父"]]
 )  # label_encoder = enc.fit(titanic_x["Sex"])  でも可能です
 # カラムの要素を取得
-print("Categorical classes:", label_encoder.classes_)
+# print("Categorical classes:", label_encoder.classes_)
 # transform()で数値へ変換
 integer_classes = label_encoder.transform(label_encoder.classes_)
-print("Integer classes:", integer_classes)
+# print("Integer classes:", integer_classes)
 
 t = label_encoder.transform(df[["母の祖祖父"]])
 df["母の祖祖父"] = t
@@ -170,10 +170,10 @@ label_encoder = enc.fit(
     df1[["母の祖祖父"]]
 )  # label_encoder = enc.fit(titanic_x["Sex"])  でも可能です
 # カラムの要素を取得
-print("Categorical classes:", label_encoder.classes_)
+# print("Categorical classes:", label_encoder.classes_)
 # transform()で数値へ変換
 integer_classes = label_encoder.transform(label_encoder.classes_)
-print("Integer classes:", integer_classes)
+# print("Integer classes:", integer_classes)
 
 t = label_encoder.transform(df1[["母の祖祖父"]])
 df1["母の祖祖父"] = t
@@ -193,10 +193,10 @@ label_encoder = enc.fit(
     df1[["母の祖父"]]
 )  # label_encoder = enc.fit(titanic_x["Sex"])  でも可能です
 # カラムの要素を取得
-print("Categorical classes:", label_encoder.classes_)
+# print("Categorical classes:", label_encoder.classes_)
 # transform()で数値へ変換
 integer_classes = label_encoder.transform(label_encoder.classes_)
-print("Integer classes:", integer_classes)
+# print("Integer classes:", integer_classes)
 
 t = label_encoder.transform(df1[["母の祖父"]])
 df1["母の祖父"] = t
@@ -216,10 +216,10 @@ label_encoder = enc.fit(
     df1[["母の父"]]
 )  # label_encoder = enc.fit(titanic_x["Sex"])  でも可能です
 # カラムの要素を取得
-print("Categorical classes:", label_encoder.classes_)
+# print("Categorical classes:", label_encoder.classes_)
 # transform()で数値へ変換
 integer_classes = label_encoder.transform(label_encoder.classes_)
-print("Integer classes:", integer_classes)
+# print("Integer classes:", integer_classes)
 
 t = label_encoder.transform(df1[["母の父"]])
 df1["母の父"] = t
@@ -239,10 +239,10 @@ label_encoder = enc.fit(
     df1[["父牛"]]
 )  # label_encoder = enc.fit(titanic_x["Sex"])  でも可能です
 # カラムの要素を取得
-print("Categorical classes:", label_encoder.classes_)
+# print("Categorical classes:", label_encoder.classes_)
 # transform()で数値へ変換
 integer_classes = label_encoder.transform(label_encoder.classes_)
-print("Integer classes:", integer_classes)
+# print("Integer classes:", integer_classes)
 
 t = label_encoder.transform(df1[["父牛"]])
 df1["父牛"] = t
@@ -262,10 +262,10 @@ label_encoder = enc.fit(
     df1[["性別"]]
 )  # label_encoder = enc.fit(titanic_x["Sex"])  でも可能です
 # カラムの要素を取得
-print("Categorical classes:", label_encoder.classes_)
+# print("Categorical classes:", label_encoder.classes_)
 # transform()で数値へ変換
 integer_classes = label_encoder.transform(label_encoder.classes_)
-print("Integer classes:", integer_classes)
+# print("Integer classes:", integer_classes)
 
 t = label_encoder.transform(df1[["性別"]])
 df1["性別"] = t
