@@ -134,7 +134,7 @@ print("Integer classes:", integer_classes)
 t = label_encoder.transform(df[["母の祖祖父"]])
 df["母の祖祖父"] = t
 #############################################################################################################
-
+print(df)
 X = df[["性別", "父牛", "母の父", "母の祖父", "母の祖祖父", "日令", "体重"]].values
 y = df["価格"].values
 
@@ -218,11 +218,11 @@ print(model.predict(df1))
 #     pred_model = model
 ##############################################################################################################
 
-model = MLPRegressor()  # 回帰モデル
-model.fit(train_X, train_y)  # 学習
-pred_y = model.predict(test_X)  # 予測
-mse = mean_squared_error(test_y, pred_y)  # 評価
-print("ニューラルネットワーク : %.2f" % (mse**0.5))
+# model = MLPRegressor()  # 回帰モデル
+# model.fit(train_X, train_y)  # 学習
+# pred_y = model.predict(test_X)  # 予測
+# mse = mean_squared_error(test_y, pred_y)  # 評価
+# print("ニューラルネットワーク : %.2f" % (mse**0.5))
 ##############################################################################################################
 
 plt.figure()
@@ -235,5 +235,3 @@ plt.ylabel("Predicted")
 plt.show()
 
 # 0   82   66   129    285  287  345   603000.0
-
-# [764410.6]
