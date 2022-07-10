@@ -20,13 +20,13 @@ from sklearn.neural_network import MLPRegressor
 df = pd.read_excel("all_data.xlsx")
 
 
-sex = (input())
-father = (input())
-gland = (input())
-gege = (input())
-got = (input())
-age = (input())
-wight = (input())
+sex = input()
+father = input()
+gland = input()
+gege = input()
+got = input()
+age = input()
+wight = input()
 
 df1 = pd.DataFrame(
     data={
