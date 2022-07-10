@@ -325,7 +325,7 @@ model = RandomForestRegressor(100)  # ランダムフォレスト回帰モデル
 model.fit(train_X, train_y)  # 学習
 pred_y = model.predict(test_X)  # 予測
 mse = mean_squared_error(test_y, pred_y)  # 評価
-print("ランダムフォレストRMSE : %.2f" % (mse**0.5))
+# print("ランダムフォレストRMSE : %.2f" % (mse**0.5))
 
 print(model.predict(df1))
 
