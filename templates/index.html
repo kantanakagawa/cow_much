@@ -1,0 +1,59 @@
+
+<title>cow much App</title>
+<style>
+#wrapper {
+   text-align: center;
+}
+</style>
+
+      <div id="wrapper">
+         {% for message in form.SepalLength.errors %}
+            <div>{{ message }}</div>
+         {% endfor %}
+
+         {% for message in form.SepalWidth.errors %}
+            <div>{{ message }}</div>
+         {% endfor %}
+
+         {% for message in form.PetalLength.errors %}
+            <div>{{ message }}</div>
+         {% endfor %}
+
+         {% for message in form.PetalWidth.errors %}
+            <div>{{ message }}</div>
+         
+         {% for message in form.PetalWidth.errors %}
+            <div>{{ message }}</div>
+         
+         {% for message in form.PetalWidth.errors %}
+            <div>{{ message }}</div>
+         
+         {% for message in form.PetalWidth.errors %}
+            <div>{{ message }}</div>
+            {% endfor %}
+
+         <form method="post">
+            {{ form.sex.label }}<br>
+            {{ form.sex }}
+            <br>
+            {{ form.father.label }}<br>
+            {{ form.father }}
+            <br>
+            {{ form.gland.label }}<br>
+            {{ form.gland }}
+            <br>
+            {{ form.gege.label }}<br>
+            {{ form.gege }}
+            <br>
+            {{ form.got.label }}<br>
+            {{ form.got }}
+            <br>
+            {{ form.age.label }}<br>
+            {{ form.age }}
+            <br>
+            {{ form.wight.label }}<br>
+            {{ form.wight }}
+            <br>
+            {{ form.submit }}
+         </form>
+      </div>
