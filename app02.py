@@ -1,75 +1,33 @@
-from flask import Flask, render_template, request, flash
-from wtforms import Form, FloatField, SubmitField, validators
-import joblib
+from flask import Flask, render_template, request, redirect
 import pandas as pd
+import joblib
 import warnings
+
 # 警告文を非表示
 warnings.simplefilter("ignore")
 from sklearn.preprocessing import LabelEncoder
 
-
-# 学習済みモデルを読み込み利用します
-def praice(df1):
-    # ランダムフォレスト回帰モデルを読み込み
-    model = joblib.load("./cow.pkl")
-    pred = model.predict(df1)
-    return pred
-
-
 app = Flask(__name__)
-# app.config.from_object(__name__)
-# app.config["SECRET_KEY"] = "zJe09C5c3tMf5FnNL09C5d6SAzZoY"
 
 
-class cowform(Form):
-    sex = (
-        "性別",
-        [
-            validators.InputRequired("この項目は入力必須です"),
-        ],
-    )
+@app.route("/index")
+def index():
+    return render_template("index.html")
 
-    father = (
-        "1代祖",
-        [
-            validators.InputRequired("この項目は入力必須です"),
-        ],
-    )
 
-    gland = (
-        "2代祖",
-        [
-            validators.InputRequired("この項目は入力必須です"),
-        ],
-    )
+# ユーザー追加のルーティング(POSTでアクセス限定)
+@app.route("/cow_much", methods=["POST"])
+class cow_info():
+    """新規顧客を追加する関数"""
+    # フォーム入力されたnameとageを値に受け取る
+    sex = request.form["sex"]
+    father = request.form["father"]
+    gland = request.form["gland"]
+    gege = request.form["gege"]
+    got = request.form["got"]
+    age = request.form["age"]
+    wight = request.form["wight"]
 
-    gege = (
-        "3代祖",
-        [
-            validators.InputRequired("この項目は入力必須です"),
-        ],
-    )
-
-    got = (
-        "4代祖",
-        [
-            validators.InputRequired("この項目は入力必須です"),
-        ],
-    )
-
-    age = (
-        "日齢",
-        [
-            validators.InputRequired("この項目は入力必須です"),
-        ],
-    )
-
-    wight = (
-        "体重",
-        [
-            validators.InputRequired("この項目は入力必須です"),
-        ],
-    )
     df1 = pd.DataFrame(
         data={
             "性別": [sex],
@@ -81,6 +39,12 @@ class cowform(Form):
             "体重": [wight],
         }
     )
+    import warnings
+
+    # 警告文を非表示
+    warnings.simplefilter("ignore")
+    from sklearn.preprocessing import LabelEncoder
+
     # ラベルエンコーディングを行うために、LabelEncoderクラスをインスタンス化（利用するためのおまじないだとお考えください）
     enc = LabelEncoder()  # encはencoderの省略名称である変数です。
     # fit()により性別カラムに対してラベルエンコーディングを行います。
@@ -93,6 +57,12 @@ class cowform(Form):
     t = label_encoder.transform(df1[["母の祖祖父"]])
     df1["母の祖祖父"] = t
     #############################################################################################################
+
+    import warnings
+
+    # 警告文を非表示
+    warnings.simplefilter("ignore")
+    from sklearn.preprocessing import LabelEncoder
 
     # ラベルエンコーディングを行うために、LabelEncoderクラスをインスタンス化（利用するためのおまじないだとお考えください）
     enc = LabelEncoder()  # encはencoderの省略名称である変数です。
@@ -107,6 +77,12 @@ class cowform(Form):
     df1["母の祖父"] = t
     #############################################################################################################
 
+    import warnings
+
+    # 警告文を非表示
+    warnings.simplefilter("ignore")
+    from sklearn.preprocessing import LabelEncoder
+
     # ラベルエンコーディングを行うために、LabelEncoderクラスをインスタンス化（利用するためのおまじないだとお考えください）
     enc = LabelEncoder()  # encはencoderの省略名称である変数です。
     # fit()により性別カラムに対してラベルエンコーディングを行います。
@@ -119,6 +95,12 @@ class cowform(Form):
     t = label_encoder.transform(df1[["母の父"]])
     df1["母の父"] = t
     #############################################################################################################
+
+    import warnings
+
+    # 警告文を非表示
+    warnings.simplefilter("ignore")
+    from sklearn.preprocessing import LabelEncoder
 
     # ラベルエンコーディングを行うために、LabelEncoderクラスをインスタンス化（利用するためのおまじないだとお考えください）
     enc = LabelEncoder()  # encはencoderの省略名称である変数です。
@@ -133,6 +115,12 @@ class cowform(Form):
     df1["父牛"] = t
     #############################################################################################################
 
+    import warnings
+
+    # 警告文を非表示
+    warnings.simplefilter("ignore")
+    from sklearn.preprocessing import LabelEncoder
+
     # ラベルエンコーディングを行うために、LabelEncoderクラスをインスタンス化（利用するためのおまじないだとお考えください）
     enc = LabelEncoder()  # encはencoderの省略名称である変数です。
     # fit()により性別カラムに対してラベルエンコーディングを行います。
@@ -143,24 +131,19 @@ class cowform(Form):
     integer_classes = label_encoder.transform(label_encoder.classes_)
     t = label_encoder.transform(df1[["性別"]])
     df1["性別"] = t
+    #############################################################################################################
 
 
-@app.route("/cow_much", methods=["GET", "POST"])
-def predicts():
-    form = cowform(request.form)
-    if request.method == "POST":
-        if form.validate() == False:
-            flash("全て入力する必要があります。")
-            return render_template("index.html", form=form)
-        return render_template("index.html", form=form)
-    else:
-    pred = praice(x)
-    praice(pred)
-    return render_template("result.html")
-    # elif request.method == 'GET':
+# 学習済みモデルを読み込み利用します
+def praice(df1):
+    # ランダムフォレスト回帰モデルを読み込み
+    model = joblib.load("./cow.pkl")
+    pred = model.predict(df1)
+    return pred
 
-    #     return render_template('index.html', form=form)
+    # index()にリダイレクトする
+    return redirect("/index")
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(port=5000, debug=True)

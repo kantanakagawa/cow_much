@@ -1,59 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>CRM-Web</title>
+</head>
+<body>
+    <h1>牛の価格予測</h1>
 
-<title>cow much App</title>
-<style>
-#wrapper {
-   text-align: center;
-}
-</style>
-
-      <div id="wrapper">
-         {% for message in form.SepalLength.errors %}
-            <div>{{ message }}</div>
-         {% endfor %}
-
-         {% for message in form.SepalWidth.errors %}
-            <div>{{ message }}</div>
-         {% endfor %}
-
-         {% for message in form.PetalLength.errors %}
-            <div>{{ message }}</div>
-         {% endfor %}
-
-         {% for message in form.PetalWidth.errors %}
-            <div>{{ message }}</div>
-         
-         {% for message in form.PetalWidth.errors %}
-            <div>{{ message }}</div>
-         
-         {% for message in form.PetalWidth.errors %}
-            <div>{{ message }}</div>
-         
-         {% for message in form.PetalWidth.errors %}
-            <div>{{ message }}</div>
-            {% endfor %}
-
-         <form method="post">
-            {{ form.sex.label }}<br>
-            {{ form.sex }}
-            <br>
-            {{ form.father.label }}<br>
-            {{ form.father }}
-            <br>
-            {{ form.gland.label }}<br>
-            {{ form.gland }}
-            <br>
-            {{ form.gege.label }}<br>
-            {{ form.gege }}
-            <br>
-            {{ form.got.label }}<br>
-            {{ form.got }}
-            <br>
-            {{ form.age.label }}<br>
-            {{ form.age }}
-            <br>
-            {{ form.wight.label }}<br>
-            {{ form.wight }}
-            <br>
-            {{ form.submit }}
-         </form>
-      </div>
+    <!-- フォームの作成 -->
+    <form action="/cow_much" method="post">
+        性別を入力してください: <input type="text" name="sex" required><br>
+        父牛を入力してください: <input type="text" name="father" required><br>
+        母の父を入力してください: <input type="text" name="gland" required><br>
+        母の祖父を入力してください: <input type="text" name="gege" required><br>
+        母の祖祖父を入力してください: <input type="text" name="got" required><br>
+        日令を入力してください: <input type="number" name="age" required><br>
+        体重を入力してください: <input type="number" name="wight" required><br>
+        <input type="submit" value="予測">
+    </form>
+</body>
+</html>
