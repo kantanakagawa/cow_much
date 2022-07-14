@@ -39,7 +39,6 @@ def cow_much():
     )
 
     # ラベルエンコーディングを行うために、LabelEncoderクラスをインスタンス化（利用するためのおまじないだとお考えください）
-    # ラベルエンコーディングを行うために、LabelEncoderクラスをインスタンス化（利用するためのおまじないだとお考えください）
     enc = LabelEncoder()  # encはencoderの省略名称である変数です。
     # fit()により性別カラムに対してラベルエンコーディングを行います。
     label_encoder = enc.fit(
